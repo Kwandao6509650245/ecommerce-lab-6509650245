@@ -33,29 +33,36 @@ describe('Product API Tests', () => {
                 price: 300,
                 stock: 20
             };
-            const res = await request(app)
-                .post(`/products`)
-                .send(newProduct);
+            const res = await request(app).post(`/products`).send(newProduct);
             expect(res.status).toBe(201)
         });
     });
 
     describe('PUT /products/:id', () => {
         it('should update an existing product', async () => {
-            const res = await request(app)
-                .put(`/products/2`)
-                .send({
-                    name: 'Iphone'
-                });
+            const res = await request(app).put(`/products/2`).send({
+                name: 'Iphone'
+            });
             expect(res.status).toBe(200)
             expect(res.body).toEqual({ id: 2, name: 'Iphone', price: 600, stock: 10 })
         });
         it('should return 404 if product not found', async () => {
-            const res = await request(app)
-                .put(`/products/8`)
-                .send({
-                    name: 'Airpod'
-                });
+            const res = await request(app).put(`/products/8`).send({
+                name: 'Airpod'
+            });
+            expect(res.status).toBe(404)
+            expect(res.body).toEqual({ message: 'Product not found' })
+        });
+    });
+
+    describe('DELETE /products/:id', () => {
+        it('should delete a product', async () => {
+            const res = await request(app).delete('/products/1')
+            expect(res.status).toBe(200)
+            expect(res.body).toEqual({ message: 'Product deleted' })
+        });
+        it('should return 404 if product not found', async () => {
+            const res = await request(app).delete('/products/8')
             expect(res.status).toBe(404)
             expect(res.body).toEqual({ message: 'Product not found' })
         });
