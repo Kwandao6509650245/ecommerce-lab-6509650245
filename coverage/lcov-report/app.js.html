@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.55% </span>
+                <span class="strong">80.55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/36</span>
+                <span class='fraction'>29/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>9/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.57% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/33</span>
+                <span class='fraction'>27/33</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -154,16 +154,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -210,17 +210,17 @@ app.post('/products', (req, res) =&gt; {
     res.status(201).json(newProduct);
 });
 // PUT /products/:id - Update a product by ID
-app.put('/products/:id', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-    const productId = <span class="cstat-no" title="statement not covered" >parseInt(req.params.id);</span>
-    const product = <span class="cstat-no" title="statement not covered" >products.find(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >p.id === productId)</span>;</span>
-<span class="cstat-no" title="statement not covered" >    if (product) {</span>
-<span class="cstat-no" title="statement not covered" >        product.name = req.body.name || product.name;</span>
+app.put('/products/:id', (req, res) =&gt; {
+    const productId = parseInt(req.params.id);
+    const product = products.find(p =&gt; p.id === productId);
+    if (product) {
+        product.name = req.body.name || <span class="branch-1 cbranch-no" title="branch not covered" >product.name;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        product.price = req.body.price || product.price;</span>
-<span class="cstat-no" title="statement not covered" >        product.stock = req.body.stock || product.stock;</span>
-<span class="cstat-no" title="statement not covered" >        res.status(200).json(product);</span>
+        product.price = req.body.price || product.price;
+        product.stock = req.body.stock || product.stock;
+        res.status(200).json(product);
     } else {
-<span class="cstat-no" title="statement not covered" >        res.status(404).json({ message: 'Product not found' });</span>
+        res.status(404).json({ message: 'Product not found' });
     }
 });
 // DELETE /products/:id - Delete a product by ID
@@ -241,7 +241,7 @@ module.exports = app;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-20T11:38:28.616Z
+                at 2024-10-20T11:51:42.169Z
             </div>
         <script src="prettify.js"></script>
         <script>
