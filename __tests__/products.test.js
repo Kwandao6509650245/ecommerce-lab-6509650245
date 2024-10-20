@@ -26,7 +26,17 @@ describe('Product API Tests', () => {
     });
     describe('POST /products', () => {
         it('should add a new product', async () => {
+            const newProduct = {
+                name: 'Keyboard',
+                price: 300,
+                stock: 20
+            };
 
+            const res = await request(app)
+                .post(`/products`)
+                .send(newProduct);
+
+            expect(res.status).toBe(201)
         });
     });
 });
